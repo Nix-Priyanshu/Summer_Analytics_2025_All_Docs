@@ -1,0 +1,29 @@
+## Architecture Diagram
+
++------------------+
+| Dataset (.csv) |
++--------+---------+
+|
+v
++-----------------------+
+| Row-by-Row Simulator |
+| (Streaming Loop) |
++----------+------------+
+|
+v
++--------------------------+
+| Pricing Model Block |
+| (Model 1 / 2 / 3 logic) |
++----------+---------------+
+|
+v
++----------------------+
+| Bokeh Plot Engine |
+| (Live Visual Output) |
++----------+-----------+
+|
+v
++-----------------------+
+| HTML Plot Export |
+| (modelX_plot.html) |
++-----------------------+
