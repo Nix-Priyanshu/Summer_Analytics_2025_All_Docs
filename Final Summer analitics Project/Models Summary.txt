@@ -1,0 +1,38 @@
+---
+
+## Models Implemented
+
+###  Model 1 – Baseline Linear
+
+\[
+P_{t+1} = P_t + \alpha \cdot \frac{\text{Occupancy}}{\text{Capacity}}
+\]
+
+- Simple model where price increases with how full a parking lot is
+- `α` is a tunable constant (e.g., 2)
+- Keeps prices between ₹5 and ₹20
+
+---
+
+### Model 2 – Demand-Based Dynamic Pricing
+
+\[
+\text{Demand} = a \cdot \frac{\text{Occupancy}}{\text{Capacity}} + b \cdot \text{QueueLength} - c \cdot \text{TrafficLevel} + d \cdot \text{SpecialDayFlag} + e \cdot \text{VehicleWeight}
+\]
+
+\[
+P = \text{BasePrice} \cdot \left(1 + \lambda \cdot \sigma(\text{Demand}) \right)
+\]
+
+- Adds behavioral inputs: queue length, traffic, day type, vehicle
+- Uses a sigmoid function to smooth wild swings in demand
+- Clipped between ₹5 and ₹20
+
+---
+
+### Model 3 – Competitive Price Adjustment
+
+- Tracks average price of all other lots at the same timestamp
+- If **current lot price > others**, reduce it slightly (₹0.7)
+- If **lower but not full**, increase it slightly
+- Encourages better balance across lots and rerouting potential

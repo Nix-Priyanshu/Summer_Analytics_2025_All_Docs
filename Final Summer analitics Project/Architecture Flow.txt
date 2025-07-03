@@ -1,0 +1,25 @@
+---
+
+## 🔁 Architecture Flow
+
+### End-to-End System Overview
+
+1. **Dataset Ingestion**
+   - The input CSV file contains parking lot updates over time
+   - Includes features like occupancy, capacity, queue, traffic, timestamps, etc.
+
+2. **Streaming Simulation**
+   - Instead of processing the full dataset at once, the system reads **row-by-row**
+   - This mimics real-time streaming behavior
+
+3. **Pricing Models**
+   - Each row is passed through a selected pricing model (`model1`, `model2`, or `model3`)
+   - Model computes dynamic price based on current features
+
+4. **Live Visualization**
+   - The updated price is streamed into a **Bokeh live plot**
+   - Shows real-time pricing curve with time step on x-axis and price on y-axis
+
+5. **HTML Export**
+   - Each plot is saved as an interactive `.html` file
+   - Viewable offline or shareable via GitHub/Drive
